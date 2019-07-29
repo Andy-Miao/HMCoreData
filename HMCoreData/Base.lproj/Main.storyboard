@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DzO-Ol-c19">
+                                <rect key="frame" x="0.0" y="44" width="414" height="40"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="38" translatesAutoresizingMaskIntoConstraints="NO" id="h86-Zt-Vrb">
+                                        <rect key="frame" x="16" y="0.0" width="307" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kUa-Er-XlW">
+                                                <rect key="frame" x="0.0" y="0.0" width="31" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="cmF-lq-nyw"/>
+                                                </constraints>
+                                                <state key="normal" title="插入"/>
+                                                <connections>
+                                                    <action selector="insertAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Umk-bu-DRB"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ka-3k-PdM">
+                                                <rect key="frame" x="69" y="0.0" width="31" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="z8v-oD-Vm4"/>
+                                                </constraints>
+                                                <state key="normal" title="删除"/>
+                                                <connections>
+                                                    <action selector="deleteAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IKH-Vs-eYg"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nj3-PM-XXb">
+                                                <rect key="frame" x="138" y="0.0" width="31" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="DAG-ib-UZ4"/>
+                                                </constraints>
+                                                <state key="normal" title="更新"/>
+                                                <connections>
+                                                    <action selector="updateAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PCj-Q5-Z9D"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzM-gP-FHo">
+                                                <rect key="frame" x="207" y="0.0" width="31" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="b4A-Qu-V4E"/>
+                                                </constraints>
+                                                <state key="normal" title="查询"/>
+                                                <connections>
+                                                    <action selector="queryAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3w0-Ol-hCZ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jEx-xU-9p1">
+                                                <rect key="frame" x="276" y="0.0" width="31" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="7sq-dh-LDQ"/>
+                                                </constraints>
+                                                <state key="normal" title="排序"/>
+                                                <connections>
+                                                    <action selector="sortAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yPC-aV-KQb"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="jEx-xU-9p1" firstAttribute="width" secondItem="kUa-Er-XlW" secondAttribute="width" id="4X2-aS-0Bh"/>
+                                            <constraint firstItem="3ka-3k-PdM" firstAttribute="width" secondItem="kUa-Er-XlW" secondAttribute="width" id="9Lz-Ce-spC"/>
+                                            <constraint firstItem="nj3-PM-XXb" firstAttribute="width" secondItem="kUa-Er-XlW" secondAttribute="width" id="Wzk-YH-5OX"/>
+                                            <constraint firstItem="gzM-gP-FHo" firstAttribute="width" secondItem="kUa-Er-XlW" secondAttribute="width" id="hGh-lM-6fY"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="JuR-39-5ej"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JnK-Od-2EW">
+                                <rect key="frame" x="0.0" y="84" width="414" height="778"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="HP8-s7-LAx"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="rCk-6z-9M1"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="DzO-Ol-c19" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="FNV-Dw-uK2"/>
+                            <constraint firstItem="JnK-Od-2EW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="XB3-Bz-HFr"/>
+                            <constraint firstItem="JnK-Od-2EW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bHR-ga-bu0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JnK-Od-2EW" secondAttribute="trailing" id="eVm-EG-jnk"/>
+                            <constraint firstItem="DzO-Ol-c19" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="sYU-ov-N6c"/>
+                            <constraint firstItem="DzO-Ol-c19" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="t8M-Tr-ZXC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JnK-Od-2EW" secondAttribute="bottom" id="tRW-kS-elw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="JnK-Od-2EW" id="Ftp-Qo-7EL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="138.61607142857142"/>
+        </scene>
+    </scenes>
+</document>
