@@ -245,6 +245,106 @@
     [delegate saveContext:@"按照age和number排序"];
 }
 
+//MARK:coreData 调试
+/*
+ CoreData调试:
+ 
+ 打开Product，选择Edit Scheme.
+ 选择Arguments，在下面的ArgumentsPassed On Launch中添加下面两个选项
+ (1)-com.apple.CoreData.SQLDebug
+ (2)1
+ */
 
+//MARK:数据库迁移升级
+/*
+ 1.新建一个版本的数据库模型*2
+ 选中*.xcdatamodeld文件，选择菜单editor->Add Model Version 取名为：*2.xcdatamodel，然后就可以发现*.xcdatamodeld目录下有两个版本的数据库模型
+ 
+ 2.设置当前coreData的数据模型为*2
+ 选中*.xcdatamodel或*2.xcdatamodel，在左侧的Model Version 中选择Current模版为*2
+ 
+ 3.修改新数据模型*2，在*2上添加字段及表：
+ 从第2步 新的表和实体属性我们可以直接在*2上操作创建，但是别忘了删除原来的类文件，重新生成下新的实体类
+ 
+ 4、设置数据库参数options，NSMigratePersistentStoresAutomaticallyOption（Core Data会把之前低版本的出现不兼容的持久化存储区迁移到新的模型中，创建新表的存储区）、NSInferMappingModelAutomaticallyOption（源模型实体属性，映射到目标模型实体对应属性），打开数据库升级迁移的开关
+ 把方法- (nullable __kindof NSPersistentStore *)addPersistentStoreWithType:(NSString *)storeType configuration:(nullable NSString *)configuration URL:(nullable NSURL *)storeURL options:(nullable NSDictionary *)options error:(NSError **)error中的options参数置为如下的options字典
+ //创建持久化存储助理：数据库
+ NSPersistentStoreCoordinator * store = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+ 
+ //请求自动轻量级迁移
+ NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+ [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+ [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,
+ nil];
+ NSError *error = nil;
+ //设置数据库相关信息 添加一个持久化存储库并设置存储类型和路径，NSSQLiteStoreType：SQLite作为存储库
+ [store addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:sqlUrl options:options error:&error];
+ */
+
+// coreData iOS10之前和之后的区别
+/*
+ iOS10之前
+NSManagedObjectContext 管理对象，上下文，持久性存储模型对象，处理数据与应用的交互
+NSManagedObjectModel 被管理的数据模型，数据结构
+NSPersistentStoreCoordinator 添加数据库，设置数据存储的名字，位置，存储方式
+NSManagedObject 被管理的数据记录
+NSFetchRequest 数据请求
+NSEntityDescription 表格实体结构
+ 
+iOS10之h之后 //多了NSPersistentContainer类  与之前类的关系
+ AppDelegate * appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+ 
+ NSPersistentContainer * container = appDelegate.persistentContainer;
+ 
+ NSURL * url = [NSPersistentContainer defaultDirectoryURL];
+ 
+ NSManagedObjectContext *viewContext = container.viewContext;
+ 
+ NSManagedObjectModel *managedObjectModel = container.managedObjectModel;
+ 
+ NSPersistentStoreCoordinator *persistentStoreCoordinator = container.persistentStoreCoordinator;
+ 
+*/
+
+// iOS10之前
+#if 0
+//创建数据库
+- (void)createSqlite{
+    
+    //1、创建模型对象
+    //获取模型路径
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"HMCoreData" withExtension:@"momd"];
+    //根据模型文件创建模型对象
+    NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    
+    //2、创建持久化存储助理：数据库
+    //利用模型对象创建助理对象
+    NSPersistentStoreCoordinator *store = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+    
+    //数据库的名称和路径
+    NSString *docStr = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *sqlPath = [docStr stringByAppendingPathComponent:@"coreData.sqlite"];
+    
+    NSURL *sqlUrl = [NSURL fileURLWithPath:sqlPath];
+    
+    NSError *error = nil;
+    //设置数据库相关信息 添加一个持久化存储库并设置类型和路径，NSSQLiteStoreType：SQLite作为存储库
+    [store addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:sqlUrl options:nil error:&error];
+    
+    if (error) {
+        NSLog(@"添加数据库失败:%@",error);
+    } else {
+        NSLog(@"添加数据库成功");
+    }
+    
+    //3、创建上下文 保存信息 对数据库进行操作
+    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    
+    //关联持久化助理
+    context.persistentStoreCoordinator = store;
+    _context = context;
+    
+}
+#endif
 @end
 
